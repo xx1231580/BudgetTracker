@@ -20,17 +20,17 @@ _List the most important questions you have about your design, or things that yo
 
 _This is where we work backwards from the customer and define what our customers would like to do (and why). You may also include use cases for yourselves (as developers), or for the organization providing the product to customers._
 
-U1. As a user, I would like to be able to know how much money I have to spend at the end of the month
+U1. As a user, I would like to be able to know how much money I have to spend at the end of the month, so that I do not overspend.
 
-U2. As a user, I would like to be able to add a monthly/yearly expense to deduct from my spending income
+U2. As a user, I would like to be able to add a monthly/yearly expense to deduct from my spending income, so I know how much I have to spend.
 
-U3. As a user, I would like to be able to edit/delete an expense to represent my current budget
+U3. As a user, I would like to be able to edit/delete an expense to represent my current budget, so that my budget is correct.
 
-U4. As a user, I would like to be able to create a budget
+U4. As a user, I would like to be able to create a budget, so that I can complete my financial goals
 
-U5. As a user, I would like to be able to edit/delete a budget
+U5. As a user, I would like to be able to edit/delete a budget, so that it reflects my ideal budget.
 
-U6. As a user, I would like to be able to create and manage multiple budgets
+U6. As a user, I would like to be able to create and manage multiple budgets, so I can budget for multiple things over time.
 
 ## 4. Project Scope
 
@@ -44,27 +44,34 @@ _The functionality described above should be what your design is focused on. You
 
 ### 4.2. Out of Scope
 
-Will not be providing financial advice or recommendations
+Providing financial advice or recommendations.
+
+Connecting to a bank for financial information.
+
+
 
 _The functionality here does not need to be accounted for in your design._
 
 # 5. Proposed Architecture Overview
 
-_Describe broadly how you are proposing to solve for the requirements you described in Section 2. This may include class diagram(s) showing what components you are planning to build. You should argue why this architecture (organization of components) is reasonable. That is, why it represents a good data flow and a good separation of concerns. Where applicable, argue why this architecture satisfies the stated requirements._
+I will be setting up my classes based on the DAO Pattern. This will allow me to separate my back end from databases I 
+use and will properly facilitate the functionality I want. My application will have general CRUD functionality and 
+will use multiple dynamoDB tables for budgets, user information, and expenses. I will use Request and Result objects 
+to represent this information, so I may receive and process that information.
 
 # 6. API
 
 ## 6.1. Public Models
 
-IncomeModel BudgetModel ExpenseModel
+UserModel BudgetModel ExpenseModel
 
-Get Monthly income endpoint: accepts get request a returns the corresponding IncomeModel
+Get Monthly income endpoint: accepts get request a returns the corresponding UserModel 
 
 Get Budget endpoint: accepts get request and return the corresponding BudgetModel 
 
 Create Budget: accepts a post request to create a budget:
 
-Create Income: accepts a post request to clarify monthly income
+Create Income: accepts a post request to clarify monthly income in user table
 
 Update Budget/Income: accepts a put request to update monthly income/budget 
 
@@ -76,24 +83,104 @@ Update Expense: accepts a put request to update an expense
 
 Delete Expense: accepts a delete request to delete an expense
 
+## 6.2. Get MonthlyIncome Endpoint
+Describe the behavior of the first endpoint you will build into your service API.
+
+(You should have a separate section for each of the endpoints you are expecting to build...)
+
+- *Accepts GET requests to /:userId/*
+- *Accepts userID and returns the corresponding UserModel.*
+    - *If the given user ID is not found, will throw a UserNotFoundException.*
+
+## 6.3 Get Budget Endpoint
+- *Accepts GET requests to /:userId/budgets/:budgetId*
+- *Accepts userID and a budgetId and returns the corresponding BudgetModel.*
+    - *If the given user ID is not found, will throw a BudgetNotFoundException.*
+
+## 6.3 Create Budget Endpoint 
+- *Accepts POST requests to /:userId/budgets*
+- *Accepts userID and creates a budgetId and a budget*
+    - *If the given user ID is not found, will throw a UserNotFoundException.*
+
+## 6.4 Create Income Endpoint
+- *Accepts POST requests to /:userId/*
+- *Accepts userID and updates income related to that user. Returns the corresponding UserModel.*
+    - *If the given user ID is not found, will throw a UserNotFoundException.*
+
+## 6.5 Update Income Endpoint
+- *Accepts PUT requests to /:userId/*
+- *Accepts userID and updates income.*
+    - *If the given user ID is not found, will throw a UserNotFoundException.*
+
+## 6.6 Update Budget Endpoint
+- *Accepts Put Requests to /:userId/budgets/:budgetId*
+- *Accepts userID and budgetId updates budget related to that user. Returns the corresponding BudgetModel.*
+    - *If the given user ID is not found, will throw a UserNotFoundException.*
+    - *If the given budget ID is not found, will throw a BudgetNotFoundException.*
+
+## 6.7 Delete Budget Endpoint
+- *Accepts DELETE Requests to /:userId/budgets/:budgetId*
+- *Accepts userID and budgetId updates budget related to that user. Deletes the corresponding budget.*
+    - *If the given user ID is not found, will throw a UserNotFoundException.*
+    - *If the given budget ID is not found, will throw a BudgetNotFoundException.*
+
+## 6.8 Create Expense Endpoint
+- *Accepts POST requests to /:userId/budgets/:budgetId/*
+- *Accepts userID and a budgetId then creates an expense*
+    - *If the given user ID is not found, will throw a UserNotFoundException.*
+    - *If the given budget ID is not found, will throw a BudgetNotFoundException.*
+
+## 6.9 Update Expense Endpoint
+- *Accepts Post Requests to /:userId/budgets/:budgetId/expenses/:expenseId*
+- *Accepts userID and budgetId updates expense related to that budget. Returns the corresponding ExpenseModel.*
+    - *If the given user ID is not found, will throw a UserNotFoundException.*
+    - *If the given budget ID is not found, will throw a BudgetNotFoundException.*
+    - *If the given expense ID is not found, will throw an ExpenseNotFoundException.*
+
+## 6.91 Delete Expense Endpoint
+- *Accepts DELETE Requests to /:userId/budgets/:budgetId/expenses/:expenseId*
+- *Accepts userID and budgetId and deletes expense related to that budget.*
+    - *If the given user ID is not found, will throw a UserNotFoundException.*
+    - *If the given budget ID is not found, will throw a BudgetNotFoundException.*
+    - *If the given expense ID is not found, will throw an ExpenseNotFoundException.*
+
 # 7. Tables
-UserTable:
-hashkey: userid
-attribute: string BudgetId
-attribute: int monthly income
 
-GSI Table:
-hashkey: userid
-sort: string BudgetId
-attribute: int monthly income
 
-BudgetTable:
-hashkey: BudgetId
-attribute: Budget
+### ***7.1 UserTable***
 
-ExpenseTable: 
-hashkey: BudgetId
-attribute: String array of expenses
+| Field         | Type              |
+|---------------|-------------------|
+| userId        | String (Hash Key) |
+| budgetId      | String            |
+| MonthlyIncome | String            |
+
+### ***7.2 UserTableGSI***
+
+| Field         | Type              |
+|---------------|-------------------|
+| userId        | String (Hash Key) |
+| budgetId      | String (Sort Key) |
+| MonthlyIncome | String            |
+
+
+### ***7.3 BudgetTable***
+
+| Field         | Type                |
+|---------------|---------------------|
+| budgetId      | String (Hash Key)   |
+| budget        | String              | 
+
+
+### ***7.4 ExpenseTable***
+
+| Field    | Type                |
+|----------|---------------------|
+| budgetId | String (Hash Key)   |
+| expenses | String              | 
+
+
+
 
 
 # 8. Pages
