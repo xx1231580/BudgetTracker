@@ -153,7 +153,6 @@ Describe the behavior of the first endpoint you will build into your service API
 |---------------|-------------------|
 | userId        | String (Hash Key) |
 | budgetId      | String            |
-| MonthlyIncome | String            |
 
 ### ***7.2 UserTableGSI***
 
@@ -161,7 +160,6 @@ Describe the behavior of the first endpoint you will build into your service API
 |---------------|-------------------|
 | userId        | String (Hash Key) |
 | budgetId      | String (Sort Key) |
-| MonthlyIncome | String            |
 
 
 ### ***7.3 BudgetTable***
@@ -170,7 +168,7 @@ Describe the behavior of the first endpoint you will build into your service API
 |---------------|---------------------|
 | budgetId      | String (Hash Key)   |
 | budget        | String              | 
-
+| MonthlyIncome | String              |
 
 ### ***7.4 ExpenseTable***
 
