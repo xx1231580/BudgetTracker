@@ -60,6 +60,8 @@ dependencies {
     implementation 'org.joda:joda-convert:2.2.+'
 
     implementation 'org.joda:joda-money:1.0.+'
+
+    implementation 'org.webjars:bootstrap:5.0.0'
 }
 
 task prepareKotlinBuildScriptModel {

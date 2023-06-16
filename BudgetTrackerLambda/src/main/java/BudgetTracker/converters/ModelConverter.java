@@ -1,5 +1,8 @@
 package BudgetTracker.converters;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import BudgetTracker.dynamodb.models.Budget;
 import BudgetTracker.dynamodb.models.Expense;
 import BudgetTracker.dynamodb.models.User;
@@ -23,6 +26,16 @@ public class ModelConverter {
            .withExpenseValue(expense.getExpenseValue())
            .withExpenseId(expense.getExpenseId())
            .build();
+    }
+
+    public List<ExpenseModel> toListOfExpenseModels(List<Expense> expenseList) {
+        List<ExpenseModel> expenseModels = new ArrayList<>();
+
+        for (Expense expense : expenseList) {
+            expenseModels.add(toExpenseModel(expense));
+        }
+
+        return expenseModels;
     }
 
     public UserModel toUserModel(User user) {
