@@ -9,12 +9,10 @@ public class DeleteBudgetRequest {
 
     private final String monthlyIncome;
 
-    private final String serializedExpenses;
-
-    private DeleteBudgetRequest(String budgetId , String monthlyIncome, String serializedExpenses) {
+    private DeleteBudgetRequest(String budgetId , String monthlyIncome) {
         this.budgetId = budgetId;
         this.monthlyIncome = monthlyIncome;
-        this.serializedExpenses = serializedExpenses;
+
     }
 
     public String getBudgetId() {
@@ -25,22 +23,20 @@ public class DeleteBudgetRequest {
         return monthlyIncome;
     }
 
-    public String getSerializedExpenses() {
-        return serializedExpenses;
-    }
+
 
     @Override
     public String toString() {
         return "CreateBudgetRequest{" +
             "budgetId='" + budgetId + '\'' +
             ", monthlyIncome='" + monthlyIncome + '\'' +
-            ", serializedExpenses='" + serializedExpenses + '\'' +
+            ", serializedExpenses='" + '\'' +
             '}';
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(budgetId, serializedExpenses);
+        return Objects.hash(budgetId);
     }
 
     public static Builder builder() {return new Builder();}
@@ -50,8 +46,6 @@ public class DeleteBudgetRequest {
         private String budgetId;
 
         private String monthlyIncome;
-
-        private String serializedExpenses;
 
         public Builder withBudgetId(String budgetId) {
             this.budgetId = budgetId;
@@ -63,13 +57,10 @@ public class DeleteBudgetRequest {
             return this;
         }
 
-        public Builder withExpenses(String serializedExpenses) {
-            this.serializedExpenses = serializedExpenses;
-            return this;
-        }
+
 
         public DeleteBudgetRequest build() {
-            return new DeleteBudgetRequest(this.budgetId, this.monthlyIncome, this.serializedExpenses);
+            return new DeleteBudgetRequest(this.budgetId, this.monthlyIncome);
         }
     }
 }

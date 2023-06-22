@@ -15,7 +15,6 @@ public class ModelConverter {
         return BudgetModel.builder()
             .withBudgetId(budget.getBudgetId())
             .withMonthlyIncome(budget.getMonthlyIncome())
-            .withExpenses(budget.getSerializedExpenses())
             .build();
     }
 

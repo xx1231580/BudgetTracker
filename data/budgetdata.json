@@ -1,0 +1,16 @@
+{
+  "budget": [
+    {
+      "PutRequest": {
+        "Item": {
+          "budgetId": {
+            "S": "2qfNJv-Advanced-Employee-Management-System"
+          },
+          "monthlyIncome": {
+            "S": "Advanced Employee Management System"
+          }
+        }
+      }
+    }
+  ]
+}

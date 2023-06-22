@@ -43,6 +43,7 @@ public class Expense {
         this.expenseValue = expenseValue;
     }
 
+    @DynamoDBAttribute(attributeName = "expenseName")
     public String getExpenseName() {
         return expenseName;
     }

@@ -15,7 +15,6 @@ public class DeleteBudgetLambda extends LambdaActivityRunner<DeleteBudgetRequest
                 return input.fromUserClaims(claims ->
                     DeleteBudgetRequest.builder()
                         .withBudgetId(unauthenticatedRequest.getBudgetId())
-                        .withExpenses(unauthenticatedRequest.getSerializedExpenses())
                         .withMonthlyIncome(unauthenticatedRequest.getMonthlyIncome())
                         .build());
             },

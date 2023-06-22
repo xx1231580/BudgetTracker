@@ -2,31 +2,29 @@
 <html>
 
 <head>
-    <script type="text/javascript" src="assets/searchPlaylists.js"></script>
+    <script type="text/javascript" src="assets/loadExpenses.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body class="background">
-    <header class="header" id="header"></header>
-    <div class="card">
-        <h2>Budget</h2>
-        <form class="card-content" id="search-playlists-form">
-            <p class="form-field">
-                <label>Search by name or tag</label>
-                <input type="text" class="validated-field" id="search-criteria" placeholder="budget" autofocus>
-                <sub>Search is case-sensitive and tags must match exactly.</sub>
-            </p>
-        </form>
-        <p class="button-group">
-            <a href="#" class="button" id="search-btn">Search</a>
-            <a href="createPlaylist.html" class="button">New Budget</a>
-        </p>
-    </div>
-    <div class="card hidden" id='search-results-container'>
-        <h3>Results for <span id="search-criteria-display"></span></h3>
-        <div id="search-results-display">
-        </div>
-    </div>
-</body>
 
+<header class="header" id="header"></header>
+
+<div class="card-div">
+    <div class="title-div">
+    <h1>Project Management System</h1>
+    <a href="createExpense.html" class="button">New Expense</a>
+    </div>
+    <div class='results-container'>
+    <h4>Current Projects<span id="search-criteria-display" class="results-span"></span></h4>
+    <div id="expenses"></div>
+    </div>
+</div>
+
+<div class="card-div">
+    <a href="createBudget.html" class="button">New Budget</a>
+    </div>
+    </div>
+</div>
+</body>
 </html>

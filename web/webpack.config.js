@@ -26,7 +26,12 @@ module.exports = {
     createPlaylist: path.resolve(__dirname, 'src', 'pages', 'createPlaylist.js'),
     viewPlaylist: path.resolve(__dirname, 'src', 'pages', 'viewPlaylist.js'),
     searchPlaylists: path.resolve(__dirname, 'src', 'pages', 'searchPlaylists.js'),
+    createExpense: path.resolve(__dirname, 'src', 'pages', 'createExpense.js'),
+    createBudget: path.resolve(__dirname, 'src', 'pages', 'createBudget.js'),
+    loadExpenses:  path.resolve(__dirname, 'src', 'pages', 'loadExpenses.js'),
+    bootstrapMinJs: path.resolve(__dirname, 'src', 'pages', 'bootstrap.min.js'),
   },
+
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),
     filename: '[name].js',

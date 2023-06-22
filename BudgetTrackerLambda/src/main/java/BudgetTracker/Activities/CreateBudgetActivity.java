@@ -1,8 +1,8 @@
 package BudgetTracker.Activities;
 
 import javax.inject.Inject;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import BudgetTracker.Activities.Request.CreateBudgetRequest;
 import BudgetTracker.Activities.Results.CreateBudgetResult;
@@ -13,7 +13,7 @@ import BudgetTracker.models.BudgetModel;
 import BudgetTracker.utils.BudgetTrackerUtils;
 
 public class CreateBudgetActivity {
-
+    private static final Logger log = LogManager.getLogger();
     private final BudgetDao budgetDao;
 
 
@@ -24,11 +24,10 @@ public class CreateBudgetActivity {
 
 
     public CreateBudgetResult handleRequest(final CreateBudgetRequest createBudgetRequest) {
-
+        log.info("Received CreateBudgetRequest {}", createBudgetRequest);
         Budget newBudget = new Budget();
         newBudget.setBudgetId(BudgetTrackerUtils.generateId());
         newBudget.setMonthlyIncome(createBudgetRequest.getMonthlyIncome());
-        newBudget.setSerializedExpenses(newBudget.getSerializedExpenses());
 
         budgetDao.saveBudget(newBudget);
 

@@ -9,12 +9,10 @@ public class BudgetModel {
 
     private final String monthlyIncome;
 
-    private final String serializedExpenses;
 
-    private BudgetModel(String budgetId , String monthlyIncome, String serializedExpenses) {
+    private BudgetModel(String budgetId , String monthlyIncome) {
         this.budgetId = budgetId;
         this.monthlyIncome = monthlyIncome;
-        this.serializedExpenses = serializedExpenses;
     }
 
     @Override
@@ -27,13 +25,11 @@ public class BudgetModel {
         }
         BudgetModel that = (BudgetModel) o;
         return Objects.equals(budgetId, that.budgetId) &&
-            Objects.equals(monthlyIncome, that.monthlyIncome) &&
-            Objects.equals(serializedExpenses, that.serializedExpenses);
-    }
+            Objects.equals(monthlyIncome, that.monthlyIncome);}
 
     @Override
     public int hashCode() {
-        return Objects.hash(budgetId, serializedExpenses);
+        return Objects.hash(budgetId);
     }
 
     public static Builder builder() {return new Builder();}
@@ -42,8 +38,6 @@ public class BudgetModel {
         private String budgetId;
 
         private String monthlyIncome;
-
-        private String serializedExpenses;
 
         public Builder withBudgetId(String budgetId) {
             this.budgetId = budgetId;
@@ -55,13 +49,9 @@ public class BudgetModel {
             return this;
         }
 
-        public Builder withExpenses(String serializedExpenses) {
-            this.serializedExpenses = serializedExpenses;
-            return this;
-        }
 
         public BudgetModel build() {
-            return new BudgetModel(this.budgetId, this.monthlyIncome, this.serializedExpenses);
+            return new BudgetModel(this.budgetId, this.monthlyIncome);
         }
     }
 

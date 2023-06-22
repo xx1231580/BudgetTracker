@@ -7,12 +7,12 @@ public class UpdateBudgetRequest {
 
     private final String monthlyIncome;
 
-    private final String serializedExpenses;
 
-    public UpdateBudgetRequest(String budgetId, String monthlyIncome, String serializedExpenses) {
+
+    public UpdateBudgetRequest(String budgetId, String monthlyIncome) {
        this.budgetId = budgetId;
        this.monthlyIncome = monthlyIncome;
-       this.serializedExpenses = serializedExpenses;
+
     }
 
     public String getBudgetId() {
@@ -23,9 +23,7 @@ public class UpdateBudgetRequest {
         return monthlyIncome;
     }
 
-    public String getSerializedExpenses() {
-        return serializedExpenses;
-    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -36,7 +34,7 @@ public class UpdateBudgetRequest {
 
         private String monthlyIncome;
 
-        private String serializedExpenses;
+
 
 
         public Builder withBudgetId(String budgetId) {
@@ -49,14 +47,12 @@ public class UpdateBudgetRequest {
             return this;
         }
 
-        public Builder withSerializedExpenses(String serializedExpenses) {
-            this.serializedExpenses = serializedExpenses;
-            return this;
-        }
+
+
 
 
         public UpdateBudgetRequest build() {
-            return new UpdateBudgetRequest(this.budgetId, this.monthlyIncome, this.serializedExpenses);
+            return new UpdateBudgetRequest(this.budgetId, this.monthlyIncome);
         }
     }
 }
