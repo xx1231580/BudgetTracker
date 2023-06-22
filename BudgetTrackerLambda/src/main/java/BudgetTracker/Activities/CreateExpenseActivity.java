@@ -8,6 +8,7 @@ import BudgetTracker.converters.ModelConverter;
 import BudgetTracker.dynamodb.ExpenseDao;
 import BudgetTracker.dynamodb.models.Expense;
 import BudgetTracker.models.ExpenseModel;
+import BudgetTracker.utils.BudgetTrackerUtils;
 
 public class CreateExpenseActivity {
     private final ExpenseDao expenseDao;
@@ -17,7 +18,7 @@ public class CreateExpenseActivity {
 
     public CreateExpenseResult handleRequest(final CreateExpenseRequest createExpenseRequest) {
         Expense expense = new Expense();
-        expense.setExpenseId(createExpenseRequest.getExpenseId());
+        expense.setExpenseId(BudgetTrackerUtils.generateId());
         expense.setExpenseName(createExpenseRequest.getExpenseName());
         expense.setBudgetId(createExpenseRequest.getBudgetId());
         expense.setExpenseValue(createExpenseRequest.getExpenseValue());

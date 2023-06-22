@@ -8,7 +8,7 @@ export default class Header extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'createExpense', 'getExpenses'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'createExpense', 'getExpenses', 'createBudget'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -57,20 +57,38 @@ export default class Header extends BindingClass {
         return await this.authenticator.getUserToken();
     }
 
+    async getAllBudgets(errorCallback) {
+        try {
+            const response = await this.axiosClient.get(`/budget`);
+            return response.data.budgetList;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    async getBudget(budgetId, errorCallback) {
+        try {
+            const response = await this.axiosClient.get(`budget/${budgetId}`);
+            return response.data.budget;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
     async getExpenses(budgetId, errorCallback) {
         try {
-            const response = await this.axiosClient.get(`/bugdets/${budgetId}/expenses`);
+            const response = await this.axiosClient.get(`/budget/${budgetId}/expense`);
             return response.data.expenseList;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
     }
 
-    async createBudget(income, errorCallback) {
+    async createBudget(monthlyIncome, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can create a budget.");
             const response = await this.axiosClient.post(`budget`, {
-                monthlyIncome: income
+                monthlyIncome: monthlyIncome
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -82,23 +100,26 @@ export default class Header extends BindingClass {
         }
     }
 
-    async createExpense(title, expense, budgetId, errorCallback) {
+    async createExpense(expenseName, expenseValue, budgetId, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can create a budget.");
             const response = await this.axiosClient.post(`expense`, {
                 budgetId: budgetId,
-                title: title,
-                expense: expense
+                expenseValue: expenseValue,
+                expenseName: expenseName
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
-            return response.data.budget;
+            return response.data.expense;
         } catch (error) {
+            console.log(error);
             this.handleError(error, errorCallback)
         }
     }
+
+
 
     /**
      * Add the header to the page.
@@ -162,7 +183,9 @@ export default class Header extends BindingClass {
     }
 
     handleError(error, errorCallback) {
-        console.error(error);
+        // console.log(error);
+        // console.error(error);
+        console.trace(error);
 
         const errorFromApi = error?.response?.data?.error_message;
         if (errorFromApi) {

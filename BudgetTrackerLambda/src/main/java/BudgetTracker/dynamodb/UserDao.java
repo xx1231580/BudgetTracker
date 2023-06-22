@@ -20,7 +20,10 @@ public class UserDao {
     }
 
     public User saveUser(User user) {
-        mapper.save(user);
+        if(mapper.load(User.class, user) == null) {
+            mapper.save(user);
+            return user;
+        }
 
         return user;
     }

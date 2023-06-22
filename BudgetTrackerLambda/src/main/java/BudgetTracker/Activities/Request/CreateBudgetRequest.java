@@ -11,6 +11,8 @@ public class CreateBudgetRequest {
     private final String monthlyIncome;
 
 
+
+
     private CreateBudgetRequest(String monthlyIncome) {
         this.monthlyIncome = monthlyIncome;
     }
@@ -19,6 +21,8 @@ public class CreateBudgetRequest {
     public String getMonthlyIncome() {
         return monthlyIncome;
     }
+
+
 
     @Override
     public String toString() {
@@ -51,10 +55,14 @@ public class CreateBudgetRequest {
 
         private String monthlyIncome;
 
+
+
         public Builder withMonthlyIncome(String monthlyIncome) {
             this.monthlyIncome = monthlyIncome;
             return this;
         }
+
+
 
         public CreateBudgetRequest build() {
             return new CreateBudgetRequest(this.monthlyIncome);

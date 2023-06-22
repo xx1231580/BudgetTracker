@@ -40,26 +40,9 @@ public class BudgetDao {
         mapper.delete(budget);
     }
 
-    public List<Budget> getAllBudgetsForUserId(String userId){
-        if (userId == null) {
-            throw new IllegalArgumentException("passed in userId is null");
-        }
+    public List<Budget> getAllBudgets() {
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
 
-        List<Budget> budgetList = new ArrayList<>();
-
-        Map<String, AttributeValue> valueMap = new HashMap<>();
-        valueMap.put(":userId", new AttributeValue().withS(userId));
-
-        DynamoDBQueryExpression<String> queryExpression = new DynamoDBQueryExpression<String>()
-            .withKeyConditionExpression("userId = :userId")
-            .withExpressionAttributeValues(valueMap);
-
-        PaginatedQueryList<String> budgetIdList = mapper.query(String.class, queryExpression);
-
-        for(String budgetId : budgetIdList) {
-            budgetList.add(mapper.load(Budget.class, budgetId));
-        }
-
-        return budgetList;
+        return mapper.scan(Budget.class, scanExpression);
     }
 }

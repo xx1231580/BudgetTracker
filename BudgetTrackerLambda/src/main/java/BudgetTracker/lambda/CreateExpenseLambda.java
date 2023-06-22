@@ -15,7 +15,6 @@ public class CreateExpenseLambda  extends LambdaActivityRunner<CreateExpenseRequ
                 CreateExpenseRequest unauthenticatedRequest = input.fromBody(CreateExpenseRequest.class);
                 return input.fromUserClaims(claims ->
                     CreateExpenseRequest.builder()
-                        .withExpenseId(BudgetTrackerUtils.generateId())
                         .withBudgetId(unauthenticatedRequest.getBudgetId())
                         .withExpenseName(unauthenticatedRequest.getExpenseName())
                         .withExpenseValue(unauthenticatedRequest.getExpenseValue())

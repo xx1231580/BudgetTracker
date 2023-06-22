@@ -19,6 +19,22 @@ public class ExpenseModel {
         this.expenseName  = expenseName;
     }
 
+    public String getBudgetId() {
+        return budgetId;
+    }
+
+    public String getExpenseId() {
+        return expenseId;
+    }
+
+    public String getExpenseValue() {
+        return expenseValue;
+    }
+
+    public String getExpenseName() {
+        return expenseName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

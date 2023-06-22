@@ -15,6 +15,14 @@ public class BudgetModel {
         this.monthlyIncome = monthlyIncome;
     }
 
+    public String getBudgetId() {
+        return budgetId;
+    }
+
+    public String getMonthlyIncome() {
+        return monthlyIncome;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -18,6 +18,16 @@ public class ModelConverter {
             .build();
     }
 
+    public List<BudgetModel> toListOfBudgetModels(List<Budget> budgetList) {
+        List<BudgetModel>budgetModels = new ArrayList<>();
+
+        for (Budget budget : budgetList) {
+            budgetModels.add(toBudgetModel(budget));
+        }
+
+        return budgetModels;
+    }
+
     public ExpenseModel toExpenseModel(Expense expense) {
        return ExpenseModel.builder()
            .withBudgetId(expense.getBudgetId())

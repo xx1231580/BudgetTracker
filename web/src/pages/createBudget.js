@@ -22,14 +22,14 @@ class CreateBudget extends BindingClass {
 
     async submit(evt) {
         evt.preventDefault();
-
         const errorMessageDisplay = document.getElementById('error-message');
-        errorMessageDisplay.innerText = '';
+        errorMessageDisplay.innerText = ``;
         errorMessageDisplay.classList.add('hidden');
 
         const createButton = document.getElementById('create');
         const origButtonText = createButton.innerText;
         createButton.innerText = 'Loading...';
+
 
         //const budgetTitle = document.getElementById('budget-title').value;
         const monthlyIncome = document.getElementById('monthly-income').value;

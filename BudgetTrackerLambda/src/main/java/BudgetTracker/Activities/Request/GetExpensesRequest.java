@@ -1,5 +1,9 @@
 package BudgetTracker.Activities.Request;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
+@JsonDeserialize(builder = GetExpensesRequest.Builder.class)
 public class GetExpensesRequest {
     private final String budgetId;
 
@@ -13,7 +17,7 @@ public class GetExpensesRequest {
         public static Builder builder() {
             return new Builder();
         }
-
+        @JsonPOJOBuilder
         public static class Builder {
             private String budgetId;
 

@@ -7,9 +7,9 @@ import DataStore from '../util/DataStore';
 class CreateExpense extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit', 'redirectToViewProject'], this);
+        this.bindClassMethods(['mount', 'submit', 'redirectToViewBudget'], this);
         this.dataStore = new DataStore();
-        this.dataStore.addChangeListener(this.redirectToViewProject);
+        this.dataStore.addChangeListener(this.redirectToViewBudget);
         this.header = new Header(this.dataStore);
     }
 
@@ -34,12 +34,21 @@ class CreateExpense extends BindingClass {
         const origButtonText = createButton.innerText;
         createButton.innerText = 'Loading...';
 
-        const expenseTitle = document.getElementById('expense-title').value;
+        const expenseName = document.getElementById('expense-title').value;
+
+        console.log(expenseName);
        
-        const expenseCost = document.getElementById('expense-cost').value;
+        const expenseValue = document.getElementById('expense-cost').value;
+
+        console.log(expenseValue);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const budgetId = urlParams.get('budgetId');
+
+        console.log(budgetId);
        
 
-        const expense = await this.client.createExpense(expenseTitle, expenseCost, (error) => {
+        const expense = await this.client.createExpense(expenseName, expenseValue, budgetId, (error) => {
             createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
@@ -49,10 +58,10 @@ class CreateExpense extends BindingClass {
     }
 
     
-    redirectToViewProject() {
+    redirectToViewBudget() {
         const expense = this.dataStore.get('expense');
         if (expense != null) {
-            window.location.href = `index.html`;
+            window.location.href = `/viewBudget.html?budgetId=${budget.budgetId}`;
         }
     }
 }

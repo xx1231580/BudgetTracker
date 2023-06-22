@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="assets/viewBudget.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <style>
+        .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+
+    .info-label {
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 24px;
+    }
+
+    .info-value {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .divider {
+        height: 1px;
+        background-color: #ddd;
+        margin-bottom: 20px;
+    }
+
+    .footer {
+        font-size: 14px;
+    }
+    </style>
+</head>
+
+<body>
+
+    <header class="header" id="header"></header>
+
+    
+    <div class="title-div">
+        <h2>Budget Tracker</h2>
+    </div>
+
+    <div class="container">
+    
+        <div class="info-label">Monthly Income</div>
+        <div class="info-value" id="monthly-budget">$0</div>
+    
+        <div class="info-label">Spending Money</div>
+        <div class="info-value" id="spending-budget">$0</div>
+    
+        <div class="divider"></div>
+    
+    </div>
+    
+    <h2></h2>
+
+    <div id="viewBudgetTable"></div>
+    <h2></h2>
+    <div id="viewExpensesTable"></div>
+
+</body>
+
+</html>

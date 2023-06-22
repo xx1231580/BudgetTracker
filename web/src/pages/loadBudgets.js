@@ -6,32 +6,32 @@ import DataStore from "../util/DataStore";
 /**
  * Logic needed for the view playlist page of the website.
  */
-class LoadExpenses extends BindingClass {
+class LoadBudgets extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['clientLoaded', 'mount', 'addExpensesToPage', 'createTable'], this);
+        this.bindClassMethods(['clientLoaded', 'mount', 'addBudgetsToPage', 'createTable'], this);
         this.dataStore = new DataStore();
-        this.dataStore.addChangeListener(this.addExpensesToPage);
+        this.dataStore.addChangeListener(this.addBudgetsToPage);
+        //this.dataStore.addChangeListener(this.addExpensesToPage);
         this.header = new Header(this.dataStore);
-        
     }
 
-    createTable(expenses){
-        if (expenses.length === 0) {
-            return '<h4>No Expenses found</h4>';
+    createTable(budgets){
+        if (budgets.length === 0) {
+            return '<h4>No results found</h4>';
         }
 
-        let html = '<table><tr><th>Expense</th><th>Status</th><th>Actions</th></tr>';
-        for (const res of expenses) {
+        let html = '<table><tr><th>Project Title</th><th>Status</th><th>Actions</th></tr>';
+        for (const res of budgets) {
             html += `
             <tr>
                 <td>
-                    <a href=viewBudget.html?budgetId=${res.budgetId}>${res.title}</a>
+                    <a href=viewBudget.html?budgetId=${res.budgetId}> budget </a>
                 </td>
                 <td>
                     ${res.status}
                 </td>
-                <td><a href="viewBudget.html?projectId=${res.budgetId}" class="view-button">View Project</a>
+                <td><a href="viewBudget.html?budgetId=${res.budgetId}" class="view-button">View Budget</a>
             </tr>`;
         }
         html += '</table>';
@@ -43,17 +43,14 @@ class LoadExpenses extends BindingClass {
      * Once the client is loaded, get the playlist metadata and song list.
      */
     async clientLoaded() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const budgetId = urlParams.get('budgetId');
-        console.log("budgetId", budgetId);
-        
+        //const projectId = urlParams.get('projectId');
         //document.getElementById('project-title').innerText = "Loading Project ...";
-        const expenses = await this.client.getExpenses(budgetId);
-        this.dataStore.set('expenses', expenses);
+        const budgets = await this.client.getAllBudgets();
+        this.dataStore.set('budgets', budgets);
         //document.getElementById('tickets').innerText = "(loading tickets...)";
         //const tickets = await this.client.getProjectTickets(projectId);
         //this.dataStore.set('tickets', tickets);
-        console.log("expenses", expenses);
+        console.log("budgets", budgets);
     }
 
     /**
@@ -70,22 +67,22 @@ class LoadExpenses extends BindingClass {
     /**
      * When the playlist is updated in the datastore, update the playlist metadata on the page.
      */
-    addExpensesToPage() {
-        const expenses = this.dataStore.get('expenses');
-        if (expenses == null) {
+    addBudgetsToPage() {
+        const budgets = this.dataStore.get('budgets');
+        if (budgets == null) {
             return;
         }
 
         //document.getElementById('project-title').innerText = project.title;
         //document.getElementById('project-description').innerText = project.description;
 
-        let ticketHtml = '';
-        let expenseId;
-        for (expenseId of expenses) {
-            ticketHtml += '<div class="expenses">' + expenseId + '</div>';
+        let expenseHtml = '';
+        let budgetId;
+        for (budgetId of budgets) {
+            expenseHtml += '<div class="budgets">' + budgetId + '</div>';
         }
 
-        document.getElementById('expenses').innerHTML = this.createTable(expenses);
+        document.getElementById('budgets').innerHTML = this.createTable(budgets);
     }
 }
 
@@ -93,8 +90,8 @@ class LoadExpenses extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const loadExpenses = new LoadExpenses();
-    loadExpenses.mount();
+    const loadBudgets = new LoadBudgets();
+    loadBudgets.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

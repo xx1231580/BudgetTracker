@@ -25,6 +25,8 @@ module.exports = {
   entry: {
     createPlaylist: path.resolve(__dirname, 'src', 'pages', 'createPlaylist.js'),
     viewPlaylist: path.resolve(__dirname, 'src', 'pages', 'viewPlaylist.js'),
+    viewBudget: path.resolve(__dirname, 'src', 'pages', 'viewBudget.js'),
+    loadBudgets: path.resolve(__dirname, 'src', 'pages', 'loadBudgets.js'),
     searchPlaylists: path.resolve(__dirname, 'src', 'pages', 'searchPlaylists.js'),
     createExpense: path.resolve(__dirname, 'src', 'pages', 'createExpense.js'),
     createBudget: path.resolve(__dirname, 'src', 'pages', 'createBudget.js'),

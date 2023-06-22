@@ -1,6 +1,8 @@
 package BudgetTracker.Activities;
 
 import javax.inject.Inject;
+
+import BudgetTracker.dynamodb.UserDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,7 +31,9 @@ public class CreateBudgetActivity {
         newBudget.setBudgetId(BudgetTrackerUtils.generateId());
         newBudget.setMonthlyIncome(createBudgetRequest.getMonthlyIncome());
 
+
         budgetDao.saveBudget(newBudget);
+
 
         BudgetModel budgetModel = new ModelConverter().toBudgetModel(newBudget);
 
