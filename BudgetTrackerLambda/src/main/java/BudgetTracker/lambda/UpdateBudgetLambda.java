@@ -16,7 +16,6 @@ public class UpdateBudgetLambda  extends LambdaActivityRunner<UpdateBudgetReques
                     UpdateBudgetRequest.builder()
                         .withBudgetId(unauthenticatedRequest.getBudgetId())
                         .withMonthlyIncome(unauthenticatedRequest.getMonthlyIncome())
-                        .withSerializedExpenses(unauthenticatedRequest.getSerializedExpenses())
                         .build());
             },
             (request, serviceComponent) ->

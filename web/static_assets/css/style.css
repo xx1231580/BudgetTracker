@@ -1,137 +1,291 @@
-:root {
-    /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
-    --primary-color: #5D5E5E;
-    --secondary-color: #ffffff;
-    --tertiary-color: #588157;
-    --error-color: #EE3A23;
-}
-
-.background {
-    background-color: #8A8C8F;
-    margin: 0;
-    counter-reset: section;
-    font-family: "Helvetica Neue",Helvetica,sans-serif;
-}
-
-.header {
-    /* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 4px 20px;
-}
-
-.button {
-  background-color: var(--tertiary-color);
-  border: none;
-  color: var(--secondary-color);
-  padding: 6px 8px 4px 8px;
-  text-align: center;
-  font-weight: bold;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.button-group {
-    display: flex;
-    justify-content: space-between;
-}
-
-.header_home {
+html {
+    font-size: 62.5%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  }
+  
+  body {
+    font-size: 1.8rem;
+    line-height: 1.618;
+    max-width: 100%;
+    margin: auto;
+    background-color: #607787;
+  
+  }
+  
+  header{
+    padding: 0px;
+  }
+  
+  .card-content{
+    margin: auto;
+    padding: 50px;
+    text-align: center;
+  }
+  
+  .results-container{
+    width: 80%;
+    margin: auto;
+    padding: 50px;
+  }
+  
+  .results_span{
+    margin: auto;
+  }
+  
+  .title-div{
+    text-align: center;
+  }
+  
+  @media (max-width: 684px) {
+    body {
+      font-size: 1.53rem;
+    }
+  }
+  @media (max-width: 382px) {
+    body {
+      font-size: 1.35rem;
+    }
+  }
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.1;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
+    color: #FFF;
+  }
+  
+  .header_home, .user_info{
     font-size: 36px;
-    line-height: 40px;
-    height: 100px;
+  }
+  
+  h1 {
+    font-size: 2.35em;
+  }
+  
+  h2 {
+    font-size: 2em;
+  }
+  
+  h3 {
+    font-size: 1.75em;
+  }
+  
+  h4 {
+    font-size: 1.5em;
+  }
+  
+  h5 {
+    font-size: 1.25em;
+  }
+  
+  h6 {
+    font-size: 1em;
+  }
+  
+  p {
+    margin-top: 0px;
+    margin-bottom: 2.5rem;
+  }
+  
+  small, sub, sup {
+    font-size: 75%;
+  }
+  
+  
+  
+  a {
     text-decoration: none;
-    color: var(--secondary-color);
-}
-
-.card {
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    margin: 20px;
-    padding: 10px 20px;
-}
-
-.error {
-    color: var(--error-color);
-    border: 1px solid var(--error-color);
-    padding: 8px;
-}
-
-.validated-field:invalid {
-    outline: 2px solid var(--error-color);
-}
-.validated-field:focus:invalid {
-    color: var(--error-color);
-}
-
-.card-content {
-    max-width: 500px;
-}
-
-.card-content .form-field {
-    display: flex;
-    flex-direction: column;
-}
-
-.tags {
-    display: flex;
-    flex-direction: row;
-}
-
-.tag {
-    font-size: 12px;
-    margin: 0 10px;
-    padding: 4px 8px;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    position: relative;
-    border-radius: 16px;
-}
-
-.song {
-    padding: 2px;
-    display: flex;
-}
-
-.song .title {
-    flex: 20%;
-}
-
-.song .album {
-    flex: 80%;
-}
-
-/*
-Flexbox on a lists removes the numbers. We use a counter here to add them back.
-https://stackoverflow.com/a/34316093
-https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters
-*/
-.song:before {
-    counter-increment: section;
-    content: counter(section) ".";
-    position: absolute;
-    margin-left: -40px;
-}
-
-.hidden {
-    display: none;
-}
-
-/* table styles */ 
-
-th, td {
-    padding: 15px;
-    text-align: left;
-}
-
-th {
-    border-bottom: 1px solid var(--primary-color);
-}
-
-a {
-    color: var(--tertiary-color);
+    color: #1d7484;
+  }
+  
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: right;
+  }
+  
+  li:first-child{
+      float: left;
+      border-right: 1px solid #bbb;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
-}
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111;
+  }
+  
+  li {
+    margin-bottom: 0.4em;
+  }
+  
+  img {
+    height: auto;
+    max-width: 100%;
+    margin-top: 0px;
+    margin-bottom: 2.5rem;
+  }
+  
+  /* Tables */
+  table {
+    margin: auto;
+    text-align: auto;
+    width: auto;
+    border-collapse: collapse;
+    background-color: #9DACB2;
+    margin-bottom: 1em;
+  }
+  
+  hr {
+    border-color: #1d7484;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #BCD4DE;
+  }
+  
+  td, th {
+    padding: 0.5em;
+    border-bottom: 1px solid #f1f1f1;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  input {
+    height: 40px;
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+  
+  /* Buttons, forms and input */
+  input, textarea {
+    border: 1px solid #4a4a4a;
+  }
+  input:focus, textarea:focus {
+    border: 1px solid #1d7484;
+  }
+  
+  textarea {
+    width: 100%;
+  }
+  
+  .button, button, input[type=submit], input[type=reset], input[type=button], .view-button, .editProjects-button, .editStatus-button, .delete-button{
+    display: inline-block;
+    padding: 8px 16px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: #344FA7;
+    border-radius: 8px;
+    border: 1px solid #344FA7;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  
+  .view-button, .editProjects-button, .create-button, .edit-button, .delete-button{
+  
+    display: inline-block;
+    padding: 8px 16px;
+    text-align: center;
+    color: #020000;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: #9bc1cc;
+    border-radius: 8px;
+    border: 1px solid black;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  
+  .button[disabled], button[disabled], input[type=submit][disabled], input[type=reset][disabled], input[type=button][disabled] {
+    cursor: default;
+    opacity: 0.5;
+  }
+  .button:focus:enabled, .button:hover:enabled, button:focus:enabled, button:hover:enabled, input[type=submit]:focus:enabled, input[type=submit]:hover:enabled, input[type=reset]:focus:enabled, input[type=reset]:hover:enabled, input[type=button]:focus:enabled, input[type=button]:hover:enabled {
+    background-color: #982c61;
+    border-color: #982c61;
+    color: #f9f9f9;
+    outline: 0;
+  }
+  
+  .view-button{
+    background-color: #626D58;
+    color: #FFF;
+  }
+  .editProjects-button{
+    background-color: #0C1B33;
+    color: #FFF;
+  }
+  
+  .create-button{
+    background-color: #77966D;
+    color: #FFF;
+  }
+  
+  .edit-button{
+    background-color: #9BD56C
+  }
+  
+  .delete-button{
+    background-color: #56282D;
+      color: #FFF;
+  }
+  
+  .saveButton{
+    background-color: #344FA7;
+      color: #FFF;
+      margin: 1em;
+      width: 15%;
+      padding: 20px 0;
+      align-items: center;
+  }
+  
+  textarea, select, input {
+    color: #4a4a4a;
+    padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+    margin-bottom: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #f1f1f1;
+    border-radius: 4px;
+    box-shadow: none;
+    box-sizing: border-box;
+  }
+  textarea:focus, select:focus, input:focus {
+    border: 1px solid #1d7484;
+    outline: 0;
+  }
+  
+  input[type=checkbox]:focus {
+    outline: 1px dotted #1d7484;
+  }
+  
+  label, legend, fieldset {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .createProject-card{
+      padding: 50px;
+      align: center;
+  }

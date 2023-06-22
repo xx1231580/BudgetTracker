@@ -10,7 +10,6 @@ public class Budget {
 
     private String monthlyIncome;
 
-    private String serializedExpenses;
 
     @DynamoDBHashKey(attributeName = "budgetId")
     public String getBudgetId() {
@@ -30,12 +29,4 @@ public class Budget {
         this.monthlyIncome = monthlyIncome;
     }
 
-    @DynamoDBAttribute(attributeName = "serializedExpenses")
-    public String getSerializedExpenses() {
-        return serializedExpenses;
-    }
-
-    public void setSerializedExpenses(String serializedExpenses) {
-        this.serializedExpenses = serializedExpenses;
-    }
 }

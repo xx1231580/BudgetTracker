@@ -1,5 +1,8 @@
-
+import MusicPlaylistClient from '../api/musicPlaylistClient.js';
 import BindingClass from "../util/bindingClass";
+/**
+ * The header component for the website.
+ */
 /**
  * The header component for the website.
  */
@@ -13,7 +16,7 @@ export default class Header extends BindingClass {
         ];
         this.bindClassMethods(methodsToBind, this);
 
-        this.client = new TicketTrackerClient();
+        this.client = new MusicPlaylistClient();
     }
 
     /**

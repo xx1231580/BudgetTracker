@@ -235,7 +235,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: BudgetTrackerLambda
-      Handler: BudgetTracker.BudgetTrackerLambda.src.main.java.BudgetTracker.lambda.CreateBudgetLambda::handleRequest
+      Handler: BudgetTracker.lambda.CreateBudgetLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -247,7 +247,7 @@ Resources:
         budgettrackerservice:
           Type: Api
           Properties:
-            Path: /budgets
+            Path: /budget
             Method: post
 
   DeleteBudgetLambda:
@@ -255,7 +255,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: BudgetTrackerLambda
-      Handler: BudgetTracker.BudgetTrackerLambda.src.main.java.BudgetTracker.lambda.DeleteBudgetLambda::handleRequest
+      Handler: BudgetTracker.lambda.DeleteBudgetLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -267,7 +267,7 @@ Resources:
         budgettrackerservice:
           Type: Api
           Properties:
-            Path: /budgets
+            Path: /budget
             Method: delete
 
   UpdateBudgetLambda:
@@ -275,7 +275,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: BudgetTrackerLambda
-      Handler: BudgetTracker.BudgetTrackerLambda.src.main.java.BudgetTracker.lambda.UpdateBudgetLambda::handleRequest
+      Handler: BudgetTracker.lambda.UpdateBudgetLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -287,15 +287,37 @@ Resources:
         budgettrackerservice:
           Type: Api
           Properties:
-            Path: /budgets/{budgetId}
+            Path: /budget/{budgetId}
             Method: put
+
+  GetAllProjectsLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: BudgetTrackerLambda
+      Handler: BudgetTracker.lambda.GetAllBudgetsLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        projectmanagementservice:
+          Type: Api
+          Properties:
+            Path: /budget
+            Method: get
+            Auth:
+              Authorizer: 'NONE'
 
   CreateExpenseLambda:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: BudgetTrackerLambda
-      Handler: BudgetTracker.BudgetTrackerLambda.src.main.java.BudgetTracker.lambda.CreateExpenseLambda::handleRequest
+      Handler: BudgetTracker.lambda.CreateExpenseLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -307,7 +329,7 @@ Resources:
         budgettrackerservice:
           Type: Api
           Properties:
-            Path: /expenses
+            Path: /expense
             Method: post
 
   UpdateExpenseLambda:
@@ -315,7 +337,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: BudgetTrackerLambda
-      Handler: BudgetTracker.BudgetTrackerLambda.src.main.java.BudgetTracker.lambda.UpdateExpenseLambda::handleRequest
+      Handler: BudgetTracker.lambda.UpdateExpenseLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -327,7 +349,7 @@ Resources:
         budgettrackerservice:
           Type: Api
           Properties:
-            Path: /budgets/{budgetId}/expenses/{expenseId}
+            Path: /budgets/{budgetId}/expense/{expenseId}
             Method: put
 
   DeleteExpenseLambda:
@@ -335,7 +357,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: BudgetTrackerLambda
-      Handler: BudgetTracker.BudgetTrackerLambda.src.main.java.BudgetTracker.lambda.DeleteExpenseLambda::handleRequest
+      Handler: BudgetTracker.lambda.DeleteExpenseLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -347,7 +369,7 @@ Resources:
         budgettrackerservice:
           Type: Api
           Properties:
-            Path: /budgets/{budgetId}/expenses/
+            Path: /budgets/{budgetId}/expense/
             Method: delete
 
   CreateUserLambda:
@@ -355,7 +377,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: BudgetTrackerLambda
-      Handler: BudgetTracker.BudgetTrackerLambda.src.main.java.BudgetTracker.lambda.CreateUserLambda::handleRequest
+      Handler: BudgetTracker.lambda.CreateUserLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -367,7 +389,7 @@ Resources:
         budgettrackerservice:
           Type: Api
           Properties:
-            Path: /user
+            Path: /user_account
             Method: post
 
   UpdateUserLambda:
@@ -375,7 +397,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: BudgetTrackerLambda
-      Handler: BudgetTracker.BudgetTrackerLambda.src.main.java.BudgetTracker.lambda.UpdateUserLambda::handleRequest
+      Handler: BudgetTracker.lambda.UpdateUserLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -387,7 +409,7 @@ Resources:
         budgettrackerservice:
           Type: Api
           Properties:
-            Path: /user/{userId}
+            Path: /user_account/{userId}
             Method: put
 
   GetExpensesLambda:
@@ -395,7 +417,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: BudgetTrackerLambda
-      Handler: BudgetTracker.BudgetTrackerLambda.src.main.java.BudgetTracker.lambda.GetExpensesLambda::handleRequest
+      Handler: BudgetTracker.lambda.GetExpensesLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -407,7 +429,7 @@ Resources:
         budgettrackerservice:
           Type: Api
           Properties:
-            Path: /budgets/{budgetId}/expenses/
+            Path: /budget/{budgetId}/expense/
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -417,7 +439,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: BudgetTrackerLambda
-      Handler: BudgetTracker.BudgetTrackerLambda.src.main.java.BudgetTracker.lambda.GetBudgetLambda::handleRequest
+      Handler: BudgetTracker.lambda.GetBudgetLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -429,7 +451,7 @@ Resources:
         budgettrackerservice:
           Type: Api
           Properties:
-            Path: /budgets/{budgetId}
+            Path: /budget/{budgetId}
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -439,7 +461,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: BudgetTrackerLambda
-      Handler: BudgetTracker.BudgetTrackerLambda.src.main.java.BudgetTracker.lambda.GetUserLambda::handleRequest
+      Handler: BudgetTracker.lambda.GetUserLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -451,7 +473,7 @@ Resources:
         budgettrackerservice:
           Type: Api
           Properties:
-            Path: /user/{userId}
+            Path: /user_account/{userId}
             Method: get
             Auth:
               Authorizer: 'NONE'

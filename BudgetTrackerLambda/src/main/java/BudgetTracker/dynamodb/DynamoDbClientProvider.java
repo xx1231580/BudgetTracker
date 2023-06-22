@@ -1,4 +1,4 @@
-package src.main.java.BudgetTracker.dynamodb;
+package BudgetTracker.dynamodb;
 
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.regions.Regions;

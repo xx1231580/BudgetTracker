@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="assets/createExpense.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body class="background">
+<header class="header" id="header"></header>
+<div class="title-div">
+    <h2>Create Expense</h2>
+</div>
+    <form class="card-content" id="create-project-form">
+        <p class="hidden error" id="error-message"> </p>
+        <p class="form-field">
+            <label>Expense Title</label>
+            <input type="text" required class="validated-field" id="expense-title"autofocus>
+        </p>
+        <p class="form-field">
+            <label>Cost</label>
+            <input type="text" id="expense-cost" class="expense-cost">
+        </p>
+        <p>
+            <a href="#" class="button" id="create">Create Expense</a>
+        </p>
+    </form>
+
+</body>
+
+</html>

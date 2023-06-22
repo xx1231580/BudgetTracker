@@ -1,9 +1,4 @@
-/*!
- * Bootstrap v3.4.1 (https://getbootstrap.com/)
- * Copyright 2011-2019 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -96,6 +91,8 @@ svg:not(:root) {
 figure {
   margin: 1em 40px;
 }
+
+
 hr {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
@@ -6805,14 +6802,180 @@ button.close {
 .visible-print-block {
   display: none !important;
 }
+
+.income-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.income-value {
+  margin-top: 5%;
+  font-size: 180%;
+}
+
+.income-value2 {
+  font-size: 180%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.income-section {
+  margin-top: 5%;
+  margin-bottom: 10px;
+}
+
+.income-separator {
+  width: 10%;
+  margin: 5px auto;
+  border-bottom: 2px solid #000;
+}
+
+.income-label {
+  font-weight: bold;
+  font-size: 180%;
+}
+
+.income-label2 {
+  font-weight: bold;
+  font-size: 180%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.table-container {
+  width: 60%;
+  max-height: 400px;
+  margin: 0 auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.table th {
+  border-right: 1px solid #ccc; /* Add a vertical line between columns */
+}
+
+.table tbody tr:not(:last-child) {
+  border-bottom: 1px solid #ccc; /* Add a horizontal line between rows */
+  border-right: 1px solid #ccc; /* Add a vertical line between cells */
+}
+
+.text-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.expense-button {
+  margin-bottom: 1rem;
+  margin-right: 20%;
+  background-color: rgba(218, 215, 205, 1);
+  border: 1px solid rgba(218, 215, 205, 1);
+  width: 35px;
+  cursor: pointer;
+  opacity: 0.8;
+  bottom: 23px;
+  right: 28px;
+}
+
+.btn-primary {
+  float: right;
+  margin-left: 1000%;
+}
+
 @media print {
   .visible-print-block {
     display: block !important;
   }
 }
+
 .visible-print-inline {
   display: none !important;
 }
+
+.open-button {
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 1px solid #ccc;
+  z-index: 9;
+  background-color: #f9f9f9;
+  padding: 20px;
+  max-width: 300px;
+}
+
+.form-container {
+  max-width: 300px;
+  padding: 20px;
+  background-color: white;
+}
+
+.open-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.open-button:hover {
+  background-color: #45a049;
+}
+
+.cancel {
+  background-color: #ccc;
+  float: right;
+}
+
+.cancel:hover {
+  background-color: #bbb;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.form-container .btn {
+  width: 100%;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.form-container .cancel {
+  background-color: red;
+}
+
+header{
+  padding: 0px;
+}
+
 @media print {
   .visible-print-inline {
     display: inline !important;

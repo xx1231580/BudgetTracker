@@ -25,7 +25,6 @@ public class DeleteBudgetActivity {
         Budget budget = new Budget();
         budget.setBudgetId(deleteBudgetRequest.getBudgetId());
         budget.setMonthlyIncome(deleteBudgetRequest.getMonthlyIncome());
-        budget.setSerializedExpenses(deleteBudgetRequest.getSerializedExpenses());
 
         budgetDao.deleteBudget(budget);
 

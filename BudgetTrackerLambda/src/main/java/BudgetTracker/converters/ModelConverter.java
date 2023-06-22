@@ -15,8 +15,17 @@ public class ModelConverter {
         return BudgetModel.builder()
             .withBudgetId(budget.getBudgetId())
             .withMonthlyIncome(budget.getMonthlyIncome())
-            .withExpenses(budget.getSerializedExpenses())
             .build();
+    }
+
+    public List<BudgetModel> toListOfBudgetModels(List<Budget> budgetList) {
+        List<BudgetModel>budgetModels = new ArrayList<>();
+
+        for (Budget budget : budgetList) {
+            budgetModels.add(toBudgetModel(budget));
+        }
+
+        return budgetModels;
     }
 
     public ExpenseModel toExpenseModel(Expense expense) {

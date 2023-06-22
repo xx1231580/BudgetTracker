@@ -25,10 +25,6 @@ public class UpdateBudgetActivity {
 
         budget.setMonthlyIncome(updateBudgetRequest.getMonthlyIncome());
 
-        if (updateBudgetRequest.getSerializedExpenses() != null &&
-            updateBudgetRequest.getSerializedExpenses().equals("")) {
-                budget.setSerializedExpenses(updateBudgetRequest.getSerializedExpenses());
-        }
 
         budget = budgetDao.saveBudget(budget);
 
